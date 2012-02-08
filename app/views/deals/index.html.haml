@@ -13,14 +13,14 @@
     =d.inspect
     .well.deal.row
       %div.avatar
-        =#image_tag(d.profile_image_url) 
+        = image_tag(d.profile_image_url) 
       %div.span10
         .author
-          =# d.from_user
-          =# link_to("@#{d.from_user}", "http://twitter.com/#{d.from_user}", :target => '_blank') unless d.from_user.blank?
-        .text!=# auto_link d.text, :html => { :target => '_blank' }
+          = d.from_user
+          = link_to("@#{d.from_user}", "http://twitter.com/#{d.from_user}", :target => '_blank') unless d.from_user.blank?
+        .text!= auto_link d.text, :html => { :target => '_blank' }
         .date
-          =#link_to d.created_at
+          = link_to d.created_at
 
 %script{:type => "text/javascript"} 
   $('#results').pageless({ totalPages: 10, url: '/deals/scrolldata', loaderMsg: 'Loading more results'}); 
