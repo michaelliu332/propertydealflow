@@ -10,7 +10,6 @@
   %h6 No deals yet.
 - else
   - @deals.each_with_index do |d,i|
-    =d.inspect
     .well.deal.row
       %div.avatar
         = image_tag(d.profile_image_url) 
