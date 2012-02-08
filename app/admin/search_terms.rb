@@ -6,11 +6,11 @@ before_filter do @skip_sidebar = true end
 		column :name 
 		column :text
 		column :hashtag
-		    #~ column "Actions" do |post|
- 		      #~ link_to "Edit", "/admin/search_terms/#{post.id}/edit"
-	      #~ end
+		    column "Actions" do |post|
+ 		      link_to "Edit", "/admin/search_terms/#{post.id}/edit"
+	      end
 	     
-	       default_actions
+	       
 	end
  
   
