@@ -5,7 +5,7 @@ class DealsController < ApplicationController
     client = TwitterSearch::Client.new 
     search_terms = SearchTerm.find(:first)
     @deals = client.query(:q => search_terms.text, :q => search_terms.hashtag, :q => search_terms.name, :rpp => 10)
-    #render :text=> params.inspect and return
+     render :text=> @deals.inspect and return
         #@deals = Deal.all
 end
 
