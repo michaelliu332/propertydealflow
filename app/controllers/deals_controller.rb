@@ -1,9 +1,11 @@
 require 'twitter_search'
 class DealsController < ApplicationController
   def index
+	
     client = TwitterSearch::Client.new 
     search_terms = SearchTerm.find(:first)
     @deals = client.query(:q => search_terms.text, :q => search_terms.hashtag, :q => search_terms.name, :rpp => 10)
+    
         #@deals = Deal.all
 end
 

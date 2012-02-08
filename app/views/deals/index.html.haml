@@ -10,6 +10,7 @@
   %h6 No deals yet.
 - else
   - @deals.each_with_index do |d|
+    =d.inspect
     .well.deal.row
       %div.avatar
         = image_tag(d.profile_image_url) 
@@ -22,4 +23,4 @@
           = link_to d.created_at
 
 %script{:type => "text/javascript"} 
-  $('#results').pageless({ totalPages: 10, url: 'http://10.90.90.107:3000/deals/scrolldata', loaderMsg: 'Loading more results'}); 
+  $('#results').pageless({ totalPages: 10, url: '/deals/scrolldata', loaderMsg: 'Loading more results'}); 
