@@ -4,3 +4,10 @@ development:
   username: root
   password: root
 
+
+
+production:
+  adapter: mysql2
+  database: pdf
+  username: root
+  password: root
