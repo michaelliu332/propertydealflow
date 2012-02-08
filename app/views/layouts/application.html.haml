@@ -1,0 +1,42 @@
+!!! 5
+%html
+  %head
+    %title Property Deal Flow
+    = stylesheet_link_tag 'bootstrap-1.1.0', 'custom', 'chosen'
+    = javascript_include_tag :defaults, 'chosen.jquery'
+    = csrf_meta_tag
+    = render(:partial => 'shared/ga') if Rails.env.production?
+  %body
+    .topbar
+      .fill
+        .container
+          %h3= link_to 'Property Deal Flow', root_url
+          = form_tag(search_deals_path, :method => :get, :class => 'form') do
+            %input(type="text" placeholder="Search" name="text")
+          %ul.nav.secondary-nav
+            %li.menu
+              - if current_user
+                = link_to current_user.name, '#', :class => :menu
+                %ul.menu-dropdown
+                  %li= link_to 'Sign Out', signout_path
+              - else
+                = link_to 'Sign In', '/auth/twitter'
+    .space
+    .container-fluid
+      .content
+        - flash.each do |type, message| 
+          .alert-message{:class => type}
+            %p= message
+        = yield
+      .sidebar
+        %h5 Filter by tags
+        = form_tag(filter_deals_path, :method => :get, :class => 'form') do
+          = select_tag 'tags[]', options_from_collection_for_select(Tag.all, 'id', 'content', params[:tags]), {:id => 'tag-filter', :multiple => true, "data-placeholder" => "Select some tags"}
+          -#= select("tag", "id", Tag.all.collect {|p| [ p.content, p.id ] }, { :include_blank => true }, {:id => 'tag-filter', :multiple => true, "data-placeholder" => "Select some tags"})
+          %br
+          = submit_tag 'Filter', :class => 'btn'
+        %p
+          PDF is a social tool for investors and professionals to find and share “highlighted” property investments, specific ideas, techniques, market insight, and news in real-time; all in one property deal flow.
+          %br
+          %br
+          %strong#howto= link_to 'How/Rules', howto_path

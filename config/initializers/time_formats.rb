@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:deal] = "%b. %d at %l:%M %p"

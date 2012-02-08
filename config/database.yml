@@ -1,0 +1,6 @@
+development:
+  adapter: mysql
+  database: pdf
+  username: root
+  password: root
+

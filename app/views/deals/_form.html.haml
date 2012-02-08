@@ -1,0 +1,8 @@
+%h4 Post a deal
+= simple_form_for deal do |f|
+  = f.input :content, :as => :text, :label => false, :input_html => { :rows => 2 }
+  %br
+  = f.submit 'Post', :class => 'btn primary'
+  .char_counter 140
+  .links_notice Links will appear shortened.
+  %br.clear

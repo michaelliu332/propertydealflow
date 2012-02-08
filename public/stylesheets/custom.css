@@ -1,0 +1,61 @@
+.space {
+  margin-top: 60px;
+}
+textarea#deal_content {
+  width: 482px;
+  height: 56px;
+}
+.deal .date, .deal .date a {
+  font-size: 11px;
+  color: #bfbfbf;
+}
+.deal .author {
+  font-weight: bold;
+  color: #404040;
+}
+.deal {
+  padding: 10px;
+}
+
+#tag-filter {
+  width: 250px;
+  margin-bottom: 5px;
+}
+
+#tag-filter_chzn {
+  margin-bottom: 5px;
+}
+
+#deal_submit, .char_counter, .links_notice {
+  float: left;
+}
+
+.char_counter {
+  font-size: 20px;
+  margin: 3px 10px;
+}
+
+.links_notice {
+  margin-top: 7px;
+  display: none;
+}
+
+.clear {
+  clear: both;
+}
+
+#howto {
+  border: 2px solid #bbb;
+  padding: 5px 5px;
+}
+
+.row .avatar {
+  float: left;
+  width: 48px;
+  height: 48px;
+  margin-left: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.deal .span10 {
+  margin-left: 15px;
+}

@@ -1,0 +1,21 @@
+- if current_user
+  - if current_user.active?
+    = render :partial => 'form', :locals => {:deal => Deal.new}
+  - else
+    .alert-message.error
+      %p Sorry, your account is blocked!
+    
+- if @deals.blank?
+  %h6 No deals yet.
+- else
+  - @deals.each do |d|
+    .well.deal.row
+      %div.avatar
+        = image_tag(d.profile_image_url) 
+      %div.span10
+        .author
+          = d.from_user
+          = link_to("@#{d.from_user}", "http://twitter.com/#{d.from_user}", :target => '_blank') unless d.from_user.blank?
+        .text!= auto_link d.text, :html => { :target => '_blank' }
+        .date
+          = link_to d.created_at 

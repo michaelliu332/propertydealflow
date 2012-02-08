@@ -1,0 +1,25 @@
+= javascript_include_tag 'jquery.pageless.min', 'jquery.pageless'
+- if current_user
+  - if current_user.active?
+    = render :partial => 'form', :locals => {:deal => Deal.new}
+  - else
+    .alert-message.error
+      %p Sorry, your account is blocked!
+%ul#results/
+- if @deals.blank?
+  %h6 No deals yet.
+- else
+  - @deals.each_with_index do |d|
+    .well.deal.row
+      %div.avatar
+        = image_tag(d.profile_image_url) 
+      %div.span10
+        .author
+          = d.from_user
+          = link_to("@#{d.from_user}", "http://twitter.com/#{d.from_user}", :target => '_blank') unless d.from_user.blank?
+        .text!= auto_link d.text, :html => { :target => '_blank' }
+        .date
+          = link_to d.created_at
+
+%script{:type => "text/javascript"} 
+  $('#results').pageless({ totalPages: 10, url: 'http://10.90.90.107:3000/deals/scrolldata', loaderMsg: 'Loading more results'}); 
