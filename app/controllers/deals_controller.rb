@@ -16,8 +16,14 @@ class DealsController < ApplicationController
            end
 	   query = query.chomp(" OR ") if !query.blank? 
         end
-    end
+end
+    if !query.blank?
     @deals = client.query(:q => query, :rpp => 10)
+    render :index
+    else
+     @deals = Deal.all
+      render :filter_search
+    end
 end
 
   def scrolldata
@@ -37,8 +43,13 @@ end
            end
 	   query = query.chomp(" OR ") if !query.blank? 
         end
-    end
+     end
+   if !query.blank?
     @deals = client.query(:q => query, :rpp => 10)
+    else
+	@deals = []    
+    end
+    
   end
 
   
