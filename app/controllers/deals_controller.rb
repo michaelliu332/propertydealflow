@@ -19,7 +19,7 @@ class DealsController < ApplicationController
 end
     if !query.blank?
     @deals = client.query(:q => query, :rpp => 10)
-    render :index
+        render :index
     else
      @deals = Deal.all
       render :filter_search
@@ -43,18 +43,20 @@ end
            end
 	   query = query.chomp(" OR ") if !query.blank? 
         end
-     end
-   if !query.blank?
-    @deals = client.query(:q => query, :rpp => params[:page].to_i*10)
-    if !@deals.blank? && @deals.size >= 10
-	    
-    else
-	@deals = []    
-     end
-    else
-	    @deals = []  
-    end
-    
+end
+
+
+	   if !query.blank?
+			    @deals = client.query(:q => query, :rpp => params[:page].to_i*10)
+			    if !@deals.blank? && @deals.size > 10
+				    
+			       else
+				@deals = []    
+			     end
+	    else
+		    @deals = []  
+	    end
+    render :layout => false 
   end
 
   
