@@ -1,10 +1,11 @@
 ActiveAdmin.register Deal do
-  actions :all, :except => [:new, :create ]
+  actions :all 
   
-     index do
+    index do
       column :content
       default_actions
     end
+    
     form do |f|
       f.inputs :content 
       f.buttons

@@ -1,27 +1,46 @@
 require 'twitter_search'
 class DealsController < ApplicationController
   def index
-	
     client = TwitterSearch::Client.new 
     search_terms = SearchTerm.find(:first)
-    @deals = client.query(:q => search_terms.text, :q => search_terms.hashtag, :q => search_terms.name, :rpp => 10)
-     #render :text=> @deals.inspect and return
-        #@deals = Deal.all
+     query = ""
+    if !search_terms.text.blank?
+       query = search_terms.text+" "
+    end
+   
+    if !search_terms.hashtag.blank?
+        data = search_terms.hashtag.split(",")
+        if !data.blank?
+           data.each do |data_hash|
+           query = query+data_hash+ " OR "
+           end
+	   query = query.chomp(" OR ") if !query.blank? 
+        end
+    end
+    @deals = client.query(:q => query, :rpp => 10)
 end
 
-
-
-  
   def scrolldata
     client = TwitterSearch::Client.new 
     search_terms = SearchTerm.find(:first)
-    @deals = client.query(:q => search_terms.text, :q => search_terms.hashtag, :q => search_terms.name, :rpp => params[:page].to_i*10 )
-    render :layout => false
+    
+    query = ""
+    if !search_terms.text.blank?
+       query = search_terms.text+" "
+    end
+   
+    if !search_terms.hashtag.blank?
+        data = search_terms.hashtag.split(",")
+        if !data.blank?
+           data.each do |data_hash|
+           query = query+data_hash+ " OR "
+           end
+	   query = query.chomp(" OR ") if !query.blank? 
+        end
+    end
+    @deals = client.query(:q => query, :rpp => 10)
   end
-  
-  
-  
-  
+
   
   def show
     @deal = Deal.find_by_id(params[:id])
@@ -33,7 +52,7 @@ end
     else
       @deals = Deal.all
     end
-    render :index
+    render :filter_search
   end
   
   def search
