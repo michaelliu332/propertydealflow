@@ -1,16 +1,16 @@
 ActiveAdmin.register SearchTerm do
-	actions :all 
+	actions :all, :except=>(:new)
 before_filter do @skip_sidebar = true end
 	index do
  
 		column :name 
 		column :text
 		column :hashtag
-		    #~ column "Actions" do |post|
- 		      #~ link_to "Edit", "/admin/search_terms/#{post.id}/edit"
-	      #~ end
+		    column "Actions" do |post|
+ 		      link_to "Edit", "/admin/search_terms/#{post.id}/edit"
+	      end
 	     
-	       default_actions
+	       
 	end
  
   
