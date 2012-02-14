@@ -45,14 +45,13 @@ end
         end
 end
 
-
-	   if !query.blank?
-			    @deals = client.query(:q => query, :rpp => params[:page].to_i*10)
-			    if !@deals.blank? && @deals.size > 10
-				    
-			       else
-				@deals = []    
-			     end
+   if !query.blank?
+    @deals = client.query(:q => query, :page => params[:page].to_i, :rpp => 10)
+		    if !@deals.blank? && @deals.size >= 10
+			    
+		       else
+			@deals = []    
+		     end
 	    else
 		    @deals = []  
 	    end

@@ -1,13 +1,12 @@
 - @deals.each_with_index do |d,i|
-  - if params[:page] && (i.to_i >= (params[:page].to_i*10)-10)
-    .well.deal.row
-      %div.avatar
-        = image_tag(d.profile_image_url) 
-      %div.span10
-        .author
-          = d.from_user
-          = link_to("@#{d.from_user}", "http://twitter.com/#{d.from_user}", :target => '_blank') unless d.from_user.blank?
-        .text!= auto_link d.text, :html => { :target => '_blank' }
-        .date
-          = link_to d.created_at
+  .well.deal.row
+    %div.avatar
+      = image_tag(d.profile_image_url) 
+    %div.span10
+      .author
+        = d.from_user
+        = link_to("@#{d.from_user}", "http://twitter.com/#{d.from_user}", :target => '_blank') unless d.from_user.blank?
+      .text!= auto_link d.text, :html => { :target => '_blank' }
+      .date
+        = link_to d.created_at
  
